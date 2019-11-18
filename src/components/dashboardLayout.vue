@@ -10,7 +10,7 @@
 
       <v-divider></v-divider>
       <v-list>
-        <v-list-item v-for="item in items" :key="item.title" link>
+        <v-list-item v-for="item in items" :key="item.title" router :to="item.link">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -22,7 +22,9 @@
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block>Logout</v-btn>
+          <router-link to="/" tag="v-btn">
+            <v-btn block>Logout</v-btn>
+          </router-link>
         </div>
       </template>
     </v-navigation-drawer>
@@ -31,7 +33,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
       <VSpacer />
-      <img src="../assets/logo.svg" style="height:45px;width:45px" />
+      <img src="../assets/logo.png" style="height:45px;width:45px" />
       <v-toolbar-title style="font-size: 21px;" class="white--text ml-2">PAW-UAJY</v-toolbar-title>
     </v-app-bar>
 
@@ -46,7 +48,19 @@ export default {
   data() {
     return {
       drawer: null,
-      items: [{ title: "User Controller", icon: "mdi-human-male" }]
+      items: [
+        {
+          title: "User Controller",
+          icon: "mdi-human-male",
+          link: "/"
+        },
+
+        {
+          title: "Spareparts Controller",
+          icon: "mdi-engine",
+          link: "/dashboardContents/sparepartsController"
+        }
+      ]
     };
   }
 };
